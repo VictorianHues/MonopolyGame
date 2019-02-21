@@ -2,11 +2,11 @@ public abstract class MonopolySquare {
 	protected String name;
 
 	public MonopolySquare(){
-		name = "No Name";
+		this.name = "No Name";
 	}
 
 	public MonopolySquare(String n){
-		name = n;
+		this.name = n;
 	}
 
 	@Override
