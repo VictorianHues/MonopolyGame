@@ -9,6 +9,19 @@ public class Player {
 		bankAccount = 31;
 	}
 
+	public void addAccount(int add){
+		bankAccount += add;
+		System.out.println("Current Account Balance: " + bankAccount);
+	}
+
+	public void subAccount(int sub){
+		if (sub > bankAccount){
+			throw new IllegalArgumentException("Insufficient Funds");
+		}
+		bankAccount -= sub;
+		System.out.println("Current Account Balance: " + bankAccount);
+	}
+
 	/* you will add several methods to this class as needed.*/
 
 	/* Whenever you adjust the location, don't forget to check

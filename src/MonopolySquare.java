@@ -1,6 +1,10 @@
 public abstract class MonopolySquare {
 	protected String name;
 
+	public MonopolySquare(){
+		name = "No Name";
+	}
+
 	public MonopolySquare(String n){
 		name = n;
 	}
