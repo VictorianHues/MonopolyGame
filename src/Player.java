@@ -3,10 +3,12 @@ public class Player {
 	private String name;
 	private boolean isTurn;
 	private int location;
+	private static String[] Property = new String[32];
+	private int propertyNum = 0;
 
 	public Player(String n){
-		name = n;
-		bankAccount = 31;
+		this.name = n;
+		this.bankAccount = 31;
 	}
 
 	public void addAccount(int add){
@@ -21,6 +23,37 @@ public class Player {
 		bankAccount -= sub;
 		System.out.println("Current Account Balance: " + bankAccount);
 	}
+
+	public void addProperty(String addProp) {
+		Property[propertyNum] = addProp;
+		propertyNum++;
+	}
+
+	public boolean checkProperty(String checkProp){
+		for (int i = 0; i <= propertyNum; i++){
+			if (Property[i] == checkProp) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int getBankAccount() {
+		return bankAccount;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public boolean isTurn() {
+		return isTurn;
+	}
+
+	public int getLocation() {
+		return location;
+	}
+
 
 	/* you will add several methods to this class as needed.*/
 

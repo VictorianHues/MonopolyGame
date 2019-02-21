@@ -1,17 +1,47 @@
-public abstract class PropertySquare extends MonopolySquare {
-    private static int[] values = {5,4,4,3,3,2,2,1};
-    private static String[] colors = {"empty","Purple","White","Magenta","Orange","Red","Yellow","Green","Blue"};
-    private int currentValue;
-    private String currentColor;
+import java.util.Random;
 
-    public PropertySquare(int location){
-        currentValue = values[16 - location];
-        currentColor = colors[16 - location];
-        
+public class PropertySquare extends MonopolySquare {
+    private int value;
+    private String owner = "X";
+
+    public PropertySquare(String name, int cost){
+        super(name);
+        this.value = cost;
     }
 
+    public void setOwner(String owner) {
+        this.owner= owner;
+    }
 
+    public int getPrice() {
+        return value;
+    }
 
+    @Override
+    public void landOn(Player P) {
+        if (owner == "X") {
+            System.out.println(P.getName() + ": Would like to buy this property?");
+            Random rand = new Random();
+            if (rand.nextBoolean()) {
+                System.out.println(P.getName() + " buys " + toString() + " for " + value);
+                owner = P.getName();
+                P.subAccount(value);
+            } else {
+                System.out.println(P.getName() + " does not buy " + toString() + " for " + value);
+            }
+        }
+        else if (owner != P.getName()) {
+            int rent;
+            if (P.checkProperty(toString())) {
+                rent = value * 2;
+            }
+            else{
+                rent = value;
+            }
+            System.out.println(P.getName() + " loses " + value + " landing on " + toString());
+
+        }
+    }
 
 
 
