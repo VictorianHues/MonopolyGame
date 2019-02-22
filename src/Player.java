@@ -1,12 +1,13 @@
 public class Player {
 	private int bankAccount;
 	private String name;
+	private int idNum;
 	private boolean isTurn;
 	private int location;
 	private static String[] Property = new String[32];
 	private int propertyNum = 0;
 
-	public Player(String n){
+	public Player(int idNum, String n){
 		this.name = n;
 		this.bankAccount = 31;
 	}
@@ -30,10 +31,27 @@ public class Player {
 	}
 
 	public boolean checkProperty(String checkProp){
+		boolean spot1 = false;
+		boolean spot2 = false;
 		for (int i = 0; i <= propertyNum; i++){
 			if (Property[i] == checkProp) {
-				return true;
+				if (spot1 == false) {
+					spot1 = true;
+				}
+				else {
+					spot2 = true;
+				}
 			}
+		}
+		if (spot1 && spot2) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean checkBankrupt() {
+		if (bankAccount == 0) {
+			return true;
 		}
 		return false;
 	}
@@ -53,6 +71,8 @@ public class Player {
 	public int getLocation() {
 		return location;
 	}
+
+	public int getIdNum() {return idNum;}
 
 
 	/* you will add several methods to this class as needed.*/

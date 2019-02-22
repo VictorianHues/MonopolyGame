@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class MonopolyGame {
 	private MonopolySquare[] board = new MonopolySquare[32];
 	private LooseChange lc;
@@ -8,9 +6,11 @@ public class MonopolyGame {
 	private int playerNum;
 	private int currentPropertyTracking = 0;
 	private Player[] players;
-	private static String[] colors = {"Purple 1","Purple 2","White 1","White 2","Magenta 1","Magenta 2","Orange 1",
-			"Orange 2","Red 1","Red 2","Yellow 1","Yellow 2","Green 1","Green 2","Blue 1","Blue 2"};
+	private static String[] colors = {"Purple","Purple","White","White","Magenta","Magenta","Orange",
+			"Orange","Red","Red","Yellow","Yellow","Green","Green","Blue","Blue"};
 	private static int[] costs = {1,1,2,2,3,3,4,4,5};
+	private boolean endGame;
+	private int currentPlayer = 0;
 
 
 	public void play(int playerNum) {
@@ -19,9 +19,19 @@ public class MonopolyGame {
 		this.playerNum = playerNum;
 
 		for(int i = 0;i < players.length;i++){
-			players[i] = new Player("Player " + (i + 1));
+			players[i] = new Player(i,"Player " + (i + 1));
 		}
 		buildBoard();
+
+
+
+		do {
+			currentPlayer++;
+
+
+
+		} while(players[currentPlayer].checkBankrupt());
+
 
 		System.out.println(d1.roll());
 		System.out.println("Playing game");  // remove this.
@@ -63,10 +73,17 @@ public class MonopolyGame {
 
 			}
 		}
+	}
+
+
+
+	public void movePlayer(int moveNum) {
+
 
 
 
 	}
+
 	public void nextTurn() { // Goes to the next turn. Also acts a player turn order. Resets once it reaches player count
 		turn++;
 		if(turn >= players.length){
@@ -80,6 +97,8 @@ public class MonopolyGame {
 	public Player[] getPlayers() { // Gets all Players
 		return players;
 	}
+
+	/*
 	public int getIndex(String name) { // Finds the index with the name... Maybe create an index object in Player.java
 		for (int index = 0; index <=playerNum; index++){
 			if (players[index].getName() != name) {
@@ -88,6 +107,7 @@ public class MonopolyGame {
 		}
 		return -1;
 	}
+	*/
 	public Player getPlayer(int index) { // Gets a specific Player
 		return players[index];
 
