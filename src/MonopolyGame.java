@@ -15,7 +15,6 @@ public class MonopolyGame {
 
 	public void play(int playerNum) {
 		players = new Player[playerNum];
-		Dice d1 = new Dice();
 		this.playerNum = playerNum;
 
 		for(int i = 0;i < players.length;i++){
@@ -25,15 +24,17 @@ public class MonopolyGame {
 
 
 
-		do {
-			currentPlayer++;
+		try {
+			players[turn].movePlayer();
+			board[players[turn].movePlayer()].landOn(players[turn], board);
+			nextTurn();
 
 
+		}
+		catch (BankruptException e) {
+			findWinner();
+		}
 
-		} while(players[currentPlayer].checkBankrupt());
-
-
-		System.out.println(d1.roll());
 		System.out.println("Playing game");  // remove this.
 	}
 
@@ -77,18 +78,24 @@ public class MonopolyGame {
 
 
 
-	public void movePlayer(int moveNum) {
 
-
-
-
+	public void findWinner(){
+		int most = -10000;
+		int winner = -1;
+		for (int i = 0; i < players.length; i++){
+			if (players[i].getBankAccount() > most){
+				winner = i;
+			}
+		}
+		System.out.println(players[winner] + " is the WINNER");
 	}
 
 	public void nextTurn() { // Goes to the next turn. Also acts a player turn order. Resets once it reaches player count
-		turn++;
 		if(turn >= players.length){
 			turn = 0;
 		}
+		else
+			turn++;
 	}
 
 	public Player getCurrentplayer() { // Gets the current player on their turn
