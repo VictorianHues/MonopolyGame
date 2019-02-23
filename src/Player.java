@@ -6,23 +6,37 @@ public class Player {
 	private int location;
 	private static String[] Property = new String[32];
 	private int propertyNum = 0;
+	private int purchasesLeft = 12;
 
 	public Player(int idNum, String n){
 		this.name = n;
+		this.idNum = idNum;
+		this.location = 0;
 		this.bankAccount = 31;
 	}
+
+	public int movePlayer() {
+		Dice d1 = new Dice();
+		System.out.println(name + " moves from " + location);
+		location += d1.roll();
+		System.out.println(" to location " + location);
+		return location;
+	}
+
 
 	public void addAccount(int add){
 		bankAccount += add;
 		System.out.println("Current Account Balance: " + bankAccount);
 	}
 
-	public void subAccount(int sub){
+	public void subAccount(int sub) throws BankruptException{
 		if (sub > bankAccount){
-			throw new IllegalArgumentException("Insufficient Funds");
+			throw new BankruptException("BANKRUPT");
 		}
-		bankAccount -= sub;
-		System.out.println("Current Account Balance: " + bankAccount);
+		else {
+			bankAccount -= sub;
+			System.out.println("Current Account Balance: " + bankAccount);
+		}
 	}
 
 	public void addProperty(String addProp) {
@@ -49,12 +63,12 @@ public class Player {
 		return false;
 	}
 
-	public boolean checkBankrupt() {
-		if (bankAccount == 0) {
-			return true;
-		}
-		return false;
-	}
+//	public boolean checkBankrupt() {
+//		if (bankAccount <= 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 	public int getBankAccount() {
 		return bankAccount;

@@ -18,23 +18,25 @@ public class PropertySquare extends MonopolySquare {
     }
 
     @Override
-    public void landOn(Player P, MonopolyGame board) {
+    public void landOn(Player P, MonopolySquare[] board) throws BankruptException {
         if (owner < 0) { // If there is no owner
             System.out.println(P.getName() + ": Would like to buy this property?");
             Random rand = new Random();
             if (rand.nextBoolean()) {
                 System.out.println(P.getName() + " buys " + toString() + " for " + value);
-                owner = P.getIdNum();
                 P.subAccount(value);
                 P.addProperty(name);
+                owner = P.getIdNum();
             } else {
                 System.out.println(P.getName() + " does not buy " + toString() + " for " + value);
             }
         }
+
+
         else if (owner != P.getIdNum()) { // If the owner is not the current player
             int rent;
 
-            if (board.getPlayer(owner).checkProperty(name)) { // If the owner of the square also owns another of the same color
+            if (board[].getPlayer(owner).checkProperty(name)) { // If the owner of the square also owns another of the same color
                 rent = value * 2;
             }
             else{
