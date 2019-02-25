@@ -8,6 +8,8 @@ public class Player {
 	private int propertyNum = 0;
 	private int purchasesLeft = 12;
 
+	private boolean inJail;
+
 	public Player(int idNum, String n){
 		this.name = n;
 		this.idNum = idNum;
@@ -15,14 +17,11 @@ public class Player {
 		this.bankAccount = 31;
 	}
 
-	public int movePlayer() {
-		Dice d1 = new Dice();
-		System.out.println(name + " moves from " + location);
-		location += d1.roll();
-		System.out.println(" to location " + location);
-		return location;
-	}
+	public void setLocation(int roll) {
 
+
+
+	}
 
 	public void addAccount(int add){
 		bankAccount += add;
@@ -88,7 +87,7 @@ public class Player {
 
 	public int getIdNum() {return idNum;}
 
-
+	public boolean getinJail() {return inJail; }
 	/* you will add several methods to this class as needed.*/
 
 	/* Whenever you adjust the location, don't forget to check
