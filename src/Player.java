@@ -2,10 +2,8 @@ public class Player {
 	private int bankAccount;
 	private String name;
 	private int idNum;
-	private boolean isTurn;
 	private int location;
-	private static String[] Property = new String[32];
-	private int propertyNum = 0;
+	private static int[] Property = new int[32];
 	private int purchasesLeft = 12;
 
 	private boolean inJail;
@@ -15,59 +13,42 @@ public class Player {
 		this.idNum = idNum;
 		this.location = 0;
 		this.bankAccount = 31;
-	}
-
-	public void setLocation(int roll) {
-
-
-
+		this.inJail = false;
 	}
 
 	public void addAccount(int add){
 		bankAccount += add;
-		System.out.println("Current Account Balance: " + bankAccount);
+		System.out.println(this.getName() + "'s Current Account Balance: " + bankAccount);
 	}
 
 	public void subAccount(int sub) throws BankruptException{
 		if (sub > bankAccount){
-			throw new BankruptException("BANKRUPT");
+			throw new BankruptException(this.getName() + " is BANKRUPT");
 		}
 		else {
 			bankAccount -= sub;
-			System.out.println("Current Account Balance: " + bankAccount);
+			System.out.println(this.getName() + "'s Current Account Balance: " + bankAccount);
 		}
 	}
 
-	public void addProperty(String addProp) {
-		Property[propertyNum] = addProp;
-		propertyNum++;
+	public void addProperty(int addProp) {
+		Property[Property.length+1] = addProp;
 	}
 
-	public boolean checkProperty(String checkProp){
-		boolean spot1 = false;
-		boolean spot2 = false;
-		for (int i = 0; i <= propertyNum; i++){
-			if (Property[i] == checkProp) {
-				if (spot1 == false) {
-					spot1 = true;
-				}
-				else {
-					spot2 = true;
-				}
+	public boolean checkProperty(int checkProp){
+		for (int i = 0; i <= Property.length; i++){
+			if (Property[i] == (checkProp-1) || Property[i] == (checkProp+1)) {
+				return true;
 			}
-		}
-		if (spot1 && spot2) {
-			return true;
 		}
 		return false;
 	}
 
-//	public boolean checkBankrupt() {
-//		if (bankAccount <= 0) {
-//			return true;
-//		}
-//		return false;
-//	}
+	public void setLocation(int newLocation) {
+		this.location = newLocation;
+	}
+
+	public int getPurchasesLeft() {return purchasesLeft; }
 
 	public int getBankAccount() {
 		return bankAccount;
@@ -77,24 +58,15 @@ public class Player {
 		return name;
 	}
 
-	public boolean isTurn() {
-		return isTurn;
-	}
-
 	public int getLocation() {
 		return location;
 	}
 
 	public int getIdNum() {return idNum;}
 
-	public boolean getinJail() {return inJail; }
-	/* you will add several methods to this class as needed.*/
+	public boolean getInJail() {return inJail; }
 
-	/* Whenever you adjust the location, don't forget to check
-	to see if you passed "Go".   The instructions explicitly said
-	that this was the responsiblity of the player, so this
-	functionality belongs here.
-
-	(unless you are told to go "directly" to location, i.e. jail/restroom)
-	 */
+	public void setInJail(boolean gotoJail) {
+		this.inJail = gotoJail;
+	}
 }
