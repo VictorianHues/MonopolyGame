@@ -6,7 +6,14 @@ public class LooseChange {
 		balance = 0;
 	}
 
+	public void addLooseChange(int add) {
+		balance += add;
+	}
 
+	public void payOut(Player P) {
+		P.addAccount(balance);
+		balance = 0;
+	}
 
 	public int getBalance() {
 		return balance;
