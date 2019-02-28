@@ -7,6 +7,7 @@ public class Player {
 	private int purchasesLeft = 12;
 
 	private boolean inJail;
+	private boolean onChance;
 
 	public Player(int idNum, String n){
 		this.name = n;
@@ -33,6 +34,20 @@ public class Player {
 
 	public void addProperty(int addProp) {
 		Property[Property.length+1] = addProp;
+		purchasesLeft--;
+	}
+
+	public void subProperty(int subProp) {
+		int[] PropertyCopy = new int[32];
+		int j = 0;
+		for (int i = 0; i < Property.length;i++) {
+			if (Property[i] != subProp) {
+				PropertyCopy[j] = Property[i];
+				j++;
+			}
+		}
+		Property = PropertyCopy;
+		purchasesLeft++;
 	}
 
 	public boolean checkProperty(int checkProp){
@@ -43,6 +58,11 @@ public class Player {
 		}
 		return false;
 	}
+
+	public void setOnChance(boolean onChance) {
+		this.onChance = onChance;
+	}
+	public boolean getOnChance() {  return onChance; }
 
 	public void setLocation(int newLocation) {
 		this.location = newLocation;

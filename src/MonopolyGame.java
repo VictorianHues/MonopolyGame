@@ -6,9 +6,10 @@ public class MonopolyGame {
 		System.out.println("\tMonopolymorphism\n");
 
 		TheBoard = new MonopolyBoard(playerNum);
-
+        System.out.println("Board Built");
 		while (!TheBoard.hasWinner()) {
             try {
+                System.out.println("~~~~~~~~~~" + TheBoard.getCurrentPlayer().getName() + "'s Turn~~~~~~~~~~");
                 TheBoard.movePlayer(TheBoard.getCurrentPlayer(), D.roll());
                 TheBoard.nextTurn();
             } catch (BankruptException e) {
