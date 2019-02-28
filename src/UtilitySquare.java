@@ -10,4 +10,9 @@ public class UtilitySquare extends MonopolySquare {
         System.out.println(P.getName() + " pays $2 to see the show");
         P.subAccount(utilCost);
     }
+
+    @Override
+    public int getOwner() {
+        return -1;
+    }
 }

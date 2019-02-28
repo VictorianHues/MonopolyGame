@@ -12,4 +12,9 @@ public class JailSquare extends MonopolySquare{
         P.subAccount(jailCost);
         TheBoard.addLooseChange(jailCost);
     }
+
+    @Override
+    public int getOwner() {
+        return -1;
+    }
 }

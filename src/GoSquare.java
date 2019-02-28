@@ -6,4 +6,8 @@ public class GoSquare extends MonopolySquare{
         P.addAccount(GoBonus);
     }
 
+    @Override
+    public int getOwner() {
+        return -1;
+    }
 }

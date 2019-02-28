@@ -1,10 +1,6 @@
 public abstract class MonopolySquare {
 	protected String name;
 
-	//public MonopolySquare(){
-	//	this.name = "No Name";
-	//}
-
 	public MonopolySquare(String n){
 		this.name = n;
 	}
@@ -15,6 +11,8 @@ public abstract class MonopolySquare {
 	}
 
 	public abstract void landOn(Player P, MonopolyBoard TheBoard) throws BankruptException;
+
+	public abstract int getOwner();
 	//Note 1:   this method is abstract.   We are going to defer
 	//implementation to the next generation (the classes that extend
 	// this class).    Since there are abstract methods in this class,

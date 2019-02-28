@@ -8,4 +8,9 @@ public class RailroadSquare extends MonopolySquare{
     public void landOn(Player P, MonopolyBoard TheBoard) throws BankruptException{
         TheBoard.movePlayer(P, D.roll());
     }
+
+    @Override
+    public int getOwner() {
+        return -1;
+    }
 }
