@@ -6,7 +6,6 @@ public class ChanceSquare extends MonopolySquare{
     @Override
     public void landOn(Player P, MonopolyBoard TheBoard) throws BankruptException {
         System.out.println("CHANCE!");
-        P.setOnChance(true);
         TheBoard.pickChanceCard(P, D.roll());
     }
 

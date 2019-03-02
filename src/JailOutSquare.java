@@ -24,6 +24,8 @@ public class JailOutSquare extends MonopolySquare{
         }
     }
 
-
-
+    @Override
+    public int getOwner() {
+        return 0;
+    }
 }

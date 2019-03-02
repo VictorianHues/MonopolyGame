@@ -13,14 +13,14 @@ public class MonopolyBoard {
 
     private int turn;
 
-
+    // Establishes players, builds board, builds deck
     public MonopolyBoard(int playerNum) {
         chanceCardDeck = new ChanceDeck[24];
         players = new Player[playerNum];
         lc = new LooseChange();
 
 
-        for(int i = 0;i < players.length;i++){
+        for(int i = 0;i < playerNum;i++){
             players[i] = new Player(i,"Player " + (i + 1));
         }
         buildBoard();
@@ -67,13 +67,23 @@ public class MonopolyBoard {
         int freeTracking = 0;
         for (int i = 0; i < 24; i++) {
             if (i < 16) {
-                chanceCardDeck[i] = new GoToCard("Chance: Go to" + colors[i], PropertyLocations[i]);
+                chanceCardDeck[i] = new GoToCard("Chance: Go to " + colors[i], PropertyLocations[i]);
             }
             else {
                 chanceCardDeck[i] = new FreePropertyCard("Chance: Free Property at " +
                         colors[freeTracking], PropertyLocations[freeTracking]);
                 freeTracking += 2;
             }
+        }
+        shuffleChanceDeck();
+    }
+
+    public void shuffleChanceDeck() {
+        for (int i = 0; i < chanceCardDeck.length; i++) {
+            int index = (int)(Math.random() * chanceCardDeck.length);
+            ChanceDeck temp = chanceCardDeck[i];
+            chanceCardDeck[i] = chanceCardDeck[index];
+            chanceCardDeck[index] = temp;
         }
     }
 
@@ -89,21 +99,16 @@ public class MonopolyBoard {
             System.out.println(currentPlayer.getName() + " is in Jail!");
             board[newLocation].landOn(currentPlayer, this);
         }
-        //else if (currentPlayer.checkChance()) { // If on a chance space. This is for when a Free Property Card is drawn...
-        //    newLocation = ((currentPlayer.getLocation() + dieFace) % 32);
-        //    board[newLocation].landOn(currentPlayer, this);
-        //}
         else {
             newLocation = ((currentPlayer.getLocation() + dieFace) % 32);
-            System.out.println("Rolls " + dieFace);
-            System.out.println("Moves from " + board[currentPlayer.getLocation()].toString()
-                    + " to " + board[newLocation].toString());
+            if (!currentPlayer.getOnChance()) {
+                System.out.println("Rolls " + dieFace);
+                System.out.println("Moves from " + board[currentPlayer.getLocation()].toString()
+                        + " to " + board[newLocation].toString());
+            }
             players[turn].setLocation(newLocation);
             board[newLocation].landOn(currentPlayer, this);
-
-            return board[newLocation];
         }
-
         return board[newLocation];
     }
 
@@ -133,15 +138,27 @@ public class MonopolyBoard {
             turn++;
     }
 
+    public boolean checkForMonopoly(int startingProperty, int ownerId) {
+        try {
+            if (board[startingProperty + 1].getOwner() == ownerId) {
+                return true;
+            } else if (board[startingProperty - 1].getOwner() == ownerId) {
+                return true;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
+        return false;
+    }
+
     public void addLooseChange(int add) {
         lc.addLooseChange(add);
     }
 
     public void payOutLC(Player P) {
-        System.out.println(lc.getBalance() + " is paid out to " + P.getName());
+        System.out.println("$" + lc.getBalance() + " is paid out to " + P.getName());
         lc.payOut(P);
     }
-
 
     public Player getCurrentPlayer() { // Gets the current player on their turn
         return players[turn];

@@ -3,8 +3,8 @@ public class Player {
 	private String name;
 	private int idNum;
 	private int location;
-	private static int[] Property = new int[32];
-	private int purchasesLeft = 12;
+	//private static int[] Property = new int[12];
+	private int properties;
 
 	private boolean inJail;
 	private boolean onChance;
@@ -15,41 +15,43 @@ public class Player {
 		this.location = 0;
 		this.bankAccount = 31;
 		this.inJail = false;
+		this.properties = 0;
 	}
 
 	public void addAccount(int add){
 		bankAccount += add;
-		System.out.println(this.getName() + "'s Current Account Balance: " + bankAccount);
+		System.out.println(this.getName() + "'s Current Account Balance: $" + bankAccount);
 	}
 
 	public void subAccount(int sub) throws BankruptException{
-		if (sub > bankAccount){
+		bankAccount -= sub;
+		System.out.println(this.getName() + "'s Current Account Balance: $" + bankAccount);
+		if (bankAccount <= 0){
 			throw new BankruptException(this.getName() + " is BANKRUPT");
 		}
-		else {
-			bankAccount -= sub;
-			System.out.println(this.getName() + "'s Current Account Balance: " + bankAccount);
-		}
 	}
 
-	public void addProperty(int addProp) {
-		Property[Property.length+1] = addProp;
-		purchasesLeft--;
+	public void addProperty() {
+		//Property[purchases] = addProp;
+		properties++;
 	}
 
-	public void subProperty(int subProp) {
-		int[] PropertyCopy = new int[32];
+	public void subProperty() {
+		/*
+	    int[] PropertyCopy = new int[12];
 		int j = 0;
-		for (int i = 0; i < Property.length;i++) {
+		for (int i = 0; i < Property.length; i++) {
 			if (Property[i] != subProp) {
 				PropertyCopy[j] = Property[i];
 				j++;
 			}
 		}
 		Property = PropertyCopy;
-		purchasesLeft++;
+		*/
+		properties--;
 	}
 
+	/*
 	public boolean checkProperty(int checkProp){
 		for (int i = 0; i <= Property.length; i++){
 			if (Property[i] == (checkProp-1) || Property[i] == (checkProp+1)) {
@@ -58,21 +60,21 @@ public class Player {
 		}
 		return false;
 	}
+    */
 
 	public void setOnChance(boolean onChance) {
 		this.onChance = onChance;
 	}
+
 	public boolean getOnChance() {  return onChance; }
 
 	public void setLocation(int newLocation) {
 		this.location = newLocation;
 	}
 
-	public int getPurchasesLeft() {return purchasesLeft; }
+	public int getProperties() {return properties; }
 
-	public int getBankAccount() {
-		return bankAccount;
-	}
+	public int getBankAccount() { return bankAccount; }
 
 	public String getName() {
 		return name;
