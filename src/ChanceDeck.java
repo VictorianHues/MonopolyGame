@@ -13,4 +13,5 @@ private int locationId;
 	}
 
 	public abstract void playCard(Player P, MonopolyBoard TheBoard) throws BankruptException;
+
 }

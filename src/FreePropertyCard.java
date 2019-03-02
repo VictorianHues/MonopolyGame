@@ -23,8 +23,22 @@ public class FreePropertyCard extends ChanceDeck {
 
         P.setOnChance(true);
 
-        if (P.getPurchases() < 12) {// Check if player has tokens left
-            if (owner1 != owner2) { // Check for Monopoly
+        if (P.getProperties() < 12) {// Check if player has tokens left
+            if (owner1 == -1 || owner2 == -1) {
+                if(owner1 == -1 && owner2 == -1) {
+                    property = ((locationId-1)+D.roll());
+                }
+                else if ( owner1 == -1 && owner2 != -1) {
+                    property = locationId;
+                }
+                else {
+                    property = locationId+1;
+                }
+                System.out.println(P.getName() + " receives " + TheBoard.getLocationName(property));
+                TheBoard.movePlayer(P, Math.abs(property-startingLocation));
+                P.setLocation(startingLocation);
+            }
+            else if (owner1 != owner2) { // Check for Monopoly
                 System.out.println(TheBoard.getPlayer(owner1).toString() + " and " +
                         TheBoard.getPlayer(owner2).toString() + " own these properties");
                 if(owner1 != P.getIdNum() && owner2 != P.getIdNum()) { // If both aren't owned by the current player

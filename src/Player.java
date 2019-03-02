@@ -4,7 +4,7 @@ public class Player {
 	private int idNum;
 	private int location;
 	//private static int[] Property = new int[12];
-	private int purchases;
+	private int properties;
 
 	private boolean inJail;
 	private boolean onChance;
@@ -15,7 +15,7 @@ public class Player {
 		this.location = 0;
 		this.bankAccount = 31;
 		this.inJail = false;
-		this.purchases = 0;
+		this.properties = 0;
 	}
 
 	public void addAccount(int add){
@@ -24,21 +24,19 @@ public class Player {
 	}
 
 	public void subAccount(int sub) throws BankruptException{
-		if (sub >= bankAccount){
+		bankAccount -= sub;
+		System.out.println(this.getName() + "'s Current Account Balance: $" + bankAccount);
+		if (bankAccount <= 0){
 			throw new BankruptException(this.getName() + " is BANKRUPT");
 		}
-		else {
-			bankAccount -= sub;
-		}
-        System.out.println(this.getName() + "'s Current Account Balance: $" + bankAccount);
 	}
 
-	public void addProperty(int addProp) {
+	public void addProperty() {
 		//Property[purchases] = addProp;
-		purchases++;
+		properties++;
 	}
 
-	public void subProperty(int subProp) {
+	public void subProperty() {
 		/*
 	    int[] PropertyCopy = new int[12];
 		int j = 0;
@@ -50,7 +48,7 @@ public class Player {
 		}
 		Property = PropertyCopy;
 		*/
-		purchases--;
+		properties--;
 	}
 
 	/*
@@ -74,7 +72,7 @@ public class Player {
 		this.location = newLocation;
 	}
 
-	public int getPurchases() {return purchases; }
+	public int getProperties() {return properties; }
 
 	public int getBankAccount() { return bankAccount; }
 

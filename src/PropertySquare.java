@@ -16,7 +16,7 @@ public class PropertySquare extends MonopolySquare {
             monopolyDouble = true;
         }
         if (!P.getOnChance()) {
-            if (P.getPurchases() < 12) { // If the player has purchases left
+            if (P.getProperties() < 12) { // If the player has purchases left
                 if (owner < 0) { // If there is no current owner
                     System.out.println("Would " + P.getName() + " like to buy " + this.name + " for $" + this.value + "?");
                     Random rand = new Random();
@@ -24,7 +24,7 @@ public class PropertySquare extends MonopolySquare {
                     if (rand.nextBoolean()) { // Random Check for purchasing. Remove and replace for actual player interaction
                         System.out.println(P.getName() + " buys " + toString() + " for $" + value);
                         P.subAccount(value);
-                        P.addProperty(P.getLocation());
+                        P.addProperty();
                         setOwner(P.getIdNum());
                         //   if (TheBoard.checkForMonopoly(P.getLocation(),owner) && !monopolyDouble) {
                         //       monopolyDouble = true;
@@ -53,9 +53,9 @@ public class PropertySquare extends MonopolySquare {
         else { // If the player is on the chance square. Only occurs when drawing a Free Property Card...
             if (owner != P.getIdNum()) {
                 if (owner >= 0) {
-                    TheBoard.getPlayer(owner).subProperty(P.getLocation());
+                    TheBoard.getPlayer(owner).subProperty();
                 }
-                P.addProperty(P.getLocation());
+                P.addProperty();
                 setOwner(P.getIdNum());
             }
             else  { System.out.println(P.getName() + " is already owner of this Property"); }

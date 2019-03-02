@@ -13,14 +13,14 @@ public class MonopolyBoard {
 
     private int turn;
 
-
+    // Establishes players, builds board, builds deck
     public MonopolyBoard(int playerNum) {
         chanceCardDeck = new ChanceDeck[24];
         players = new Player[playerNum];
         lc = new LooseChange();
 
 
-        for(int i = 0;i < players.length;i++){
+        for(int i = 0;i < playerNum;i++){
             players[i] = new Player(i,"Player " + (i + 1));
         }
         buildBoard();
@@ -74,6 +74,16 @@ public class MonopolyBoard {
                         colors[freeTracking], PropertyLocations[freeTracking]);
                 freeTracking += 2;
             }
+        }
+        shuffleChanceDeck();
+    }
+
+    public void shuffleChanceDeck() {
+        for (int i = 0; i < chanceCardDeck.length; i++) {
+            int index = (int)(Math.random() * chanceCardDeck.length);
+            ChanceDeck temp = chanceCardDeck[i];
+            chanceCardDeck[i] = chanceCardDeck[index];
+            chanceCardDeck[index] = temp;
         }
     }
 

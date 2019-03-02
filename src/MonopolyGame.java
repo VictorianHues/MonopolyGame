@@ -10,10 +10,12 @@ public class MonopolyGame {
 		while (!TheBoard.hasWinner()) {
             try {
                 System.out.println("~~~~~~~~~~" + TheBoard.getCurrentPlayer().getName() + "'s Turn~~~~~~~~~~");
+                System.out.println("~~~~~~~~~~(Bal:" + TheBoard.getCurrentPlayer().getBankAccount() +
+                        " Props:" + TheBoard.getCurrentPlayer().getProperties()+ ")~~~~~~~~~~");
                 TheBoard.movePlayer(TheBoard.getCurrentPlayer(), D.roll());
                 TheBoard.nextTurn();
             } catch (BankruptException e) {
-                System.out.println(TheBoard.findWinner().toString() + " is the WINNER");
+                System.out.println(TheBoard.findWinner().getName() + " is the WINNER");
             }
        }
 	}
