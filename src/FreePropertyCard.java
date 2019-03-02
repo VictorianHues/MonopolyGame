@@ -21,8 +21,9 @@ public class FreePropertyCard extends ChanceDeck {
         System.out.println(P.getName() + " draws " + this.toString());
         System.out.println(P.toString() + " gets a free property in " + color);
 
+        P.setOnChance(true);
 
-        if (P.getPurchasesLeft() != 0) {// Check if player has tokens left
+        if (P.getPurchases() < 12) {// Check if player has tokens left
             if (owner1 != owner2) { // Check for Monopoly
                 System.out.println(TheBoard.getPlayer(owner1).toString() + " and " +
                         TheBoard.getPlayer(owner2).toString() + " own these properties");
@@ -38,11 +39,10 @@ public class FreePropertyCard extends ChanceDeck {
                 System.out.println(P.getName() + " receives " + TheBoard.getLocationName(property));
                 TheBoard.movePlayer(P, Math.abs(property-startingLocation));
                 P.setLocation(startingLocation);
-                P.setOnChance(false);
-
             } else { System.out.println("These Properties are part of a Monopoly owned by " +
                         TheBoard.getPlayer(owner1).toString()); }
 
         } else { System.out.println(P.toString() + " doesn't have any purchases left"); }
+        P.setOnChance(false);
     }
 }

@@ -6,6 +6,7 @@ public class RailroadSquare extends MonopolySquare{
     }
 
     public void landOn(Player P, MonopolyBoard TheBoard) throws BankruptException{
+        System.out.println("Ride the Railroad!");
         TheBoard.movePlayer(P, D.roll());
     }
 

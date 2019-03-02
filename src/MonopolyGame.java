@@ -13,9 +13,9 @@ public class MonopolyGame {
                 TheBoard.movePlayer(TheBoard.getCurrentPlayer(), D.roll());
                 TheBoard.nextTurn();
             } catch (BankruptException e) {
-                System.out.println(TheBoard.findWinner() + " is the WINNER");
+                System.out.println(TheBoard.findWinner().toString() + " is the WINNER");
             }
-        }
+       }
 	}
 
 
