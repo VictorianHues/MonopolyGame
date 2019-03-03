@@ -1,9 +1,14 @@
 # Monopolymorphism Assignment
-#### INCOMPLETE
+#### FUNCTIONAL, DEBUGGING MOSTLY COMPLETE, CURRENTLY IRONING OUT FEATURES
 #### Julieon Peterson
 #### Object Oriented Programming
 #### Stephen Hughes
 #### Due Date: 25 February 2019
+### To-Do:
+* Implement Draw/Discard Functionality to Chance Deck (Currently picks at random without movement
+* Usability Features to turn into actual game
+* Test Functionality with more than two players
+
 
 ## Objective:
 * Work with Abstract classes
