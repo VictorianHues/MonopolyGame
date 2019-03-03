@@ -19,28 +19,26 @@ public class FreePropertyCard extends ChanceDeck {
         int property;
 
         System.out.println(P.getName() + " draws " + this.toString());
-        System.out.println(P.toString() + " gets a free property in " + color);
+        System.out.println(P.getName() + " gets a free property in " + color);
 
         P.setOnChance(true);
 
         if (P.getProperties() < 12) {// Check if player has tokens left
             if (owner1 == -1 || owner2 == -1) {
                 if(owner1 == -1 && owner2 == -1) {
-                    property = ((locationId-1)+D.roll());
-                }
+                    property = ((locationId-1)+D.roll()); }
                 else if ( owner1 == -1 && owner2 != -1) {
-                    property = locationId;
-                }
+                    property = locationId; }
                 else {
-                    property = locationId+1;
-                }
+                    property = locationId+1; }
+
                 System.out.println(P.getName() + " receives " + TheBoard.getLocationName(property));
                 TheBoard.movePlayer(P, Math.abs(property-startingLocation));
                 P.setLocation(startingLocation);
             }
             else if (owner1 != owner2) { // Check for Monopoly
-                System.out.println(TheBoard.getPlayer(owner1).toString() + " and " +
-                        TheBoard.getPlayer(owner2).toString() + " own these properties");
+                System.out.println(TheBoard.getPlayer(owner1).getName() + " and " +
+                        TheBoard.getPlayer(owner2).getName() + " own these properties");
                 if(owner1 != P.getIdNum() && owner2 != P.getIdNum()) { // If both aren't owned by the current player
                     property = ((locationId-1)+D.roll());
                 }
@@ -54,9 +52,9 @@ public class FreePropertyCard extends ChanceDeck {
                 TheBoard.movePlayer(P, Math.abs(property-startingLocation));
                 P.setLocation(startingLocation);
             } else { System.out.println("These Properties are part of a Monopoly owned by " +
-                        TheBoard.getPlayer(owner1).toString()); }
+                        TheBoard.getPlayer(owner1).getName()); }
 
-        } else { System.out.println(P.toString() + " doesn't have any purchases left"); }
+        } else { System.out.println(P.getName() + " doesn't have any purchases left"); }
         P.setOnChance(false);
     }
 }

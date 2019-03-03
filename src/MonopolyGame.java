@@ -16,6 +16,7 @@ public class MonopolyGame {
                 TheBoard.nextTurn();
             } catch (BankruptException e) {
                 System.out.println(TheBoard.findWinner().getName() + " is the WINNER");
+                TheBoard.printBoard();
             }
        }
 	}

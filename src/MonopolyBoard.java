@@ -47,13 +47,13 @@ public class MonopolyBoard {
                 board[i] = new UtilitySquare("Utility");
             }
             else if (i == 10){ // Jail
-                board[i] = new JailOutSquare("GO");
+                board[i] = new JailSquare("Jail");
             }
             else if (i == 16) { // Loose Change
                 board[i] = new LooseChangeSquare("Loose Change");
             }
             else if (i == 26) { // Go to Jail
-                board[i] = new JailSquare("Jail");
+                board[i] = new GoToJailSquare("\"Go to Jail\"");
             }
             else { // Properties. Iterates through two lists of colors and property values to assign to each
                 board[i] = new PropertySquare(colors[currentPropertyTracking],costs[currentPropertyTracking]);
@@ -97,7 +97,7 @@ public class MonopolyBoard {
         if (currentPlayer.getInJail()) {
             newLocation = currentPlayer.getLocation();
             System.out.println(currentPlayer.getName() + " is in Jail!");
-            board[newLocation].landOn(currentPlayer, this);
+            board[10].landOn(currentPlayer, this);
         }
         else {
             newLocation = ((currentPlayer.getLocation() + dieFace) % 32);
@@ -158,6 +158,13 @@ public class MonopolyBoard {
     public void payOutLC(Player P) {
         System.out.println("$" + lc.getBalance() + " is paid out to " + P.getName());
         lc.payOut(P);
+    }
+
+    public void printBoard() {
+        for (int i = 0; i < board.length; i++) {
+            if (board[i].getOwner() == -1) { System.out.print(board[i].toString() + " -> "); }
+            else { System.out.print(board[i].toString() + "::" + players[board[i].getOwner()].getName() + " -> "); }
+        }
     }
 
     public Player getCurrentPlayer() { // Gets the current player on their turn
