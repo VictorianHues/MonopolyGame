@@ -37,6 +37,7 @@ public class PropertySquare extends MonopolySquare {
 
                     if (monopolyDouble) { // If the owner of the square also owns another of the same color
                         rent = getPrice() * 2;
+                        System.out.println("This Property is part of a MONOPOLY, rent is $" + value + " doubled");
                     } else {
                         rent = getPrice();
                     }
