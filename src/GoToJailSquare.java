@@ -11,6 +11,7 @@ public class GoToJailSquare extends MonopolySquare{
         P.setLocation(10);
         P.subAccount(jailCost);
         TheBoard.addLooseChange(jailCost);
+        System.out.println(P.getName() + " goes directly to JAIL, pays $3, and does not collect $2");
     }
 
     @Override

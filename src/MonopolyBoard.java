@@ -97,7 +97,7 @@ public class MonopolyBoard {
         if (currentPlayer.getInJail()) {
             newLocation = currentPlayer.getLocation();
             System.out.println(currentPlayer.getName() + " is in Jail!");
-            board[newLocation].landOn(currentPlayer, this);
+            board[10].landOn(currentPlayer, this);
         }
         else {
             newLocation = ((currentPlayer.getLocation() + dieFace) % 32);
