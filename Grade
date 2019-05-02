@@ -1,0 +1,28 @@
+Setup:  Object Modeling
+	5/5   	Models game board after Monopoly Jr - according to distribution
+	5/5 	Models Loose Change
+	5/5 	Models Chance Cards
+	5/5 	Models Player
+
+Player Movement
+	10/10 	LandOn for  Amusements
+	10/10	LandOn for RailRoads
+ 	8/10	LandOn for Chance
+ 	        -Should not have a separate die.
+	10/10	LandOn for Tax
+	10/10	LandOn for other Specialty Squares
+
+Chance Cards
+	5/5 	Goto Cards
+	5/5 	Free Ticket Booth Cards
+
+10/10 Player Status
+	2-Player Turn Taking
+	Funds
+
+
+5/5  Game ends with Bankruptcy
+
+5/5 Submission
+
+Total: 98
