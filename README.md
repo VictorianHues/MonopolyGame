@@ -1,6 +1,8 @@
+# Assignment was imported from student repository https://github.com/Julieon1/MonopolyGame after losing access to email verification
+
 # Monopolymorphism Assignment
 #### FUNCTIONAL, DEBUGGING MOSTLY COMPLETE, CURRENTLY IRONING OUT FEATURES
-#### Julieon Peterson
+#### Victoria Julieon Peterson
 #### Object Oriented Programming
 #### Stephen Hughes
 #### Due Date: 25 February 2019
